@@ -30,6 +30,7 @@ function render(category) {
   results.textContent = visible.length + " invitations shown.";
 }
 
+if (filters) {
 for (const category of ["All", ...new Set(invitations.map(invite => invite.occasion))]) {
   const button = document.createElement("button");
   button.type = "button";
@@ -42,37 +43,29 @@ for (const category of ["All", ...new Set(invitations.map(invite => invite.occas
   filters.append(button);
 }
 render("All");
+}
 
 const form = document.querySelector("#enquiry");
-const button = form.querySelector("button");
-const status = document.querySelector("#status");
-const draft = document.querySelector("#draft");
-const dm = document.querySelector("#dm");
-if (formEndpoint) button.textContent = "Send enquiry";
-
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-  const data = new FormData(form);
-  if (formEndpoint) {
+if (form && /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(formEndpoint)) {
+  const button = form.querySelector("button");
+  const status = document.querySelector("#status");
+  button.disabled = false;
+  status.textContent = "";
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
     button.disabled = true;
     status.textContent = "Sending…";
     try {
-      const response = await fetch(formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      const response = await fetch(formEndpoint, {
+        method: "POST", body: new FormData(form), headers: { Accept: "application/json" }
+      });
       if (!response.ok) throw new Error("Submission failed");
-      status.textContent = "Thank you. Your enquiry has been sent.";
       form.reset();
-      return;
+      status.textContent = "Thank you. Your enquiry has been sent.";
     } catch {
-      status.textContent = "We couldn’t send your enquiry. Copy the message below and send it on Instagram.";
+      status.textContent = "Your enquiry could not be sent. Please try again or use the email link.";
     } finally {
       button.disabled = false;
     }
-  } else {
-    status.textContent = "Copy the message below and send it to us on Instagram.";
-  }
-  draft.value = ["Hi Easy Invites! I’d like a personalised invitation.", ...[["Name","name"],["Email","email"],["Occasion","occasion"],["Language","language"],["Event date","date"],["Details","message"]].filter(([,key]) => data.get(key)).map(([label,key]) => label + ": " + data.get(key))].join("\n");
-  draft.hidden = false;
-  dm.hidden = false;
-  draft.focus();
-  draft.select();
-});
+  });
+}

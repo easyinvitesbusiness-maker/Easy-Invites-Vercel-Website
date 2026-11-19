@@ -1,12 +1,6 @@
 # Easy Invites
+Replace the current site files with these ZIP contents in the existing Git repository. Keep index.html at the root and push to the branch connected to Vercel. No build command is required.
 
-Open index.html in a browser or run `python -m http.server 8000` and open http://localhost:8000.
+Create a form in Formspree, select easyinvites.business@gmail.com as the notification recipient and verify it if prompted. Copy the full https://formspree.io/f/... URL into formEndpoint in config.js. Deploy and submit one test enquiry from contact.html, then check the inbox. Before setup the page offers a direct email link.
 
-## Add your live invitations
-In config.js, paste each published HTTPS invitation link into its `url` field. Blank fields open the included sample. To add a design, duplicate a record, supply its own image in assets/, and add a matching demo folder if you want a local fallback.
-
-## Receive enquiries
-Out of the box, the form prepares a message for guests to copy into Instagram DMs. It sends no data automatically. To accept submissions directly, create a Formspree form and paste the HTTPS endpoint into `formEndpoint` in config.js. Verify the destination in Formspree and send a test enquiry from your deployed site before sharing it.
-
-## Deploy
-Extract the ZIP into a GitHub repository with index.html at the root. Import the repository into Vercel as a static project using the Other framework preset and an empty build command.
+Update the individual invitation URLs in config.js. Empty URLs continue to open the bundled samples.
