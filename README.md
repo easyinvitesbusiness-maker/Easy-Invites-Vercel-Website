@@ -1,6 +1,6 @@
 # Easy Invites
-Replace the current site files with these ZIP contents in the existing Git repository. Keep index.html at the root and push to the branch connected to Vercel. No build command is required.
+Deploy these ZIP contents to the root of the Git repository connected to Vercel. No build command is required.
 
-Create a form in Formspree, select easyinvites.business@gmail.com as the notification recipient and verify it if prompted. Copy the full https://formspree.io/f/... URL into formEndpoint in config.js. Deploy and submit one test enquiry from contact.html, then check the inbox. Before setup the page offers a direct email link.
+The Home and Contact pages submit to the configured Formspree endpoint in config.js. Confirm easyinvites.business@gmail.com is the notification recipient in Formspree and send a labelled test from the deployed site to verify delivery.
 
-Update the individual invitation URLs in config.js. Empty URLs continue to open the bundled samples.
+Add your published invitation URLs in config.js. Empty URLs open the included samples.

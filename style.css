@@ -15,3 +15,4 @@ header nav a[aria-current=page]{text-decoration:underline}
 #designs h1,#contact h1,.intro h1{font-size:clamp(2.5rem,6vw,4.7rem)}
 footer{background:var(--ivory);padding:40px 0 18px;border-top:1px solid #ead3bf}.footer-grid{display:grid;grid-template-columns:1.35fr .75fr 1fr;gap:2rem}.footer-grid h2{font-size:1.4rem}.footer-grid nav{display:grid;gap:.5rem}.footer-grid p{margin:.6rem 0}.footer-grid a{overflow-wrap:anywhere}.copyright{margin-top:2rem;padding-top:1rem;border-top:1px solid #ead3bf}.button:disabled{opacity:.6;cursor:default}
 @media(max-width:760px){header nav{order:3;width:100%}.footer-grid{grid-template-columns:1fr}.header-cta{padding:.45rem .7rem}}
+.faq{padding:0 0 64px}.faq details{border-top:1px solid #ead3bf;padding:1rem 0}.faq summary{cursor:pointer;color:var(--wine);font-weight:650}.faq details p{padding:.65rem 0 0;max-width:65ch}

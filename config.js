@@ -1,6 +1,6 @@
 // Paste your published invitation URL into url. An empty url opens the bundled demo.
 window.easyInvites = {
-  formEndpoint: "", // Optional HTTPS Formspree endpoint for direct submissions.
+  formEndpoint: "https://formspree.io/f/moedwodg",
   invitations: [
     { title: "Tamil Wedding", occasion: "Wedding", language: "Tamil", folder: "Tamil-Wedding", url: "" },
     { title: "English Housewarming", occasion: "Housewarming", language: "English", folder: "English-Housewarming", url: "" },
