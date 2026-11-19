@@ -69,3 +69,26 @@ if (form && /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(formEndpoint)) {
     }
   });
 }
+
+const menuToggle = document.querySelector(".menu-toggle");
+const mainNav = document.querySelector("#main-nav");
+if (menuToggle && mainNav) {
+  const smallScreen = window.matchMedia("(max-width: 1024px)");
+  function updateMenu(open) {
+    menuToggle.hidden = !smallScreen.matches;
+    menuToggle.setAttribute("aria-expanded", String(open));
+    mainNav.hidden = smallScreen.matches && !open;
+  }
+  updateMenu(false);
+  smallScreen.addEventListener("change", () => updateMenu(false));
+  menuToggle.addEventListener("click", () => updateMenu(mainNav.hidden));
+  mainNav.addEventListener("click", event => {
+    if (smallScreen.matches && event.target.closest("a")) updateMenu(false);
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+      updateMenu(false);
+      menuToggle.focus();
+    }
+  });
+}
